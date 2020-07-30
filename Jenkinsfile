@@ -1,11 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('Clone Git '){
+        stage('Initial'){
             // Clone Git 
-            steps{
-                git 'https://github.com/thanakit12/nodeAppwithDocker.git'
-            }
+            sh 'node --version'
+            sh 'npm --version'
         }
         stage('Build') {
             steps {
@@ -14,6 +13,7 @@ pipeline {
             }
         }
         stage('Test') {
+
             steps {
                 echo 'Testing..'
             }
