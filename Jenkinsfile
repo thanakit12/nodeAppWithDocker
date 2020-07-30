@@ -1,7 +1,5 @@
 pipeline {
     
-    def app
-
     agent any
 
     tools{nodejs "npm"}
@@ -23,7 +21,7 @@ pipeline {
             }
             steps {
                  script {
-                     app = docker.build('thanakit2/jenkindemo')
+                    def app = docker.build('thanakit2/jenkindemo')
                 }
             }
         }
