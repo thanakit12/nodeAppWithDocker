@@ -3,8 +3,10 @@ pipeline {
     stages {
         stage('Initial'){
             // Clone Git 
-            sh 'node --version'
-            sh 'npm --version'
+            steps{
+                sh 'node --version'
+                sh 'npm --version'
+            }
         }
         stage('Build') {
             steps {
