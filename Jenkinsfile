@@ -6,19 +6,18 @@ pipeline {
 
     stages {
 
-         stage('InitializeDocker'){
-              agent {
-                docker {
-                // Set both label and image
-                label 'docker'
-                image 'node:7-alpine'
-                args '--name docker-node' // list any args
-                }
-            }
-            steps{
-                echo "Initailize"
-            }
-         }
+        //  stage('InitializeDocker'){
+        //       agent {
+        //         docker {
+        //             // Set both label and image
+        //             image 'node:10.0.0-alpine'
+        //             args '--name docker-node' // list any args
+        //         }
+        //     }
+        //     steps{
+        //         echo "Initailize"
+        //     }
+        //  }
 
          stage('Initial') {
             steps {
