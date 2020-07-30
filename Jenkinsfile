@@ -31,15 +31,12 @@ pipeline {
                 echo "-------Build-------"
             }
 
-            steps[
-                sh 'ls'
-            ]
-            // steps {
-            //      script {
+            steps {
+                 script {
                      
-            //         def app = docker.build('thanakit2/jenkindemo')
-            //     }
-            // }
+                    def app = docker.build('thanakit2/jenkindemo')
+                }
+            }
         }
         stage('Deploy') {
             steps {
