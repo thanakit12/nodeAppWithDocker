@@ -11,6 +11,7 @@ pipeline {
                 // }
                 echo "------Building-------"
                 sh 'npm --version'
+                sh 'npm install'
             }
         }
         stage('Test') {
