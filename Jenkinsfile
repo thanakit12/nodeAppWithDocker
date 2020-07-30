@@ -4,6 +4,14 @@ pipeline {
     tools{nodejs "npm"}
 
     stages {
+
+         stage('InitializeDocker'){
+             script{
+                 def dockerHome = tool 'mydocker'
+             }
+            // env.PATH = "${dockerHome}/bin:${env.PATH}"
+         }
+
          stage('Initial') {
             steps {
                 echo "------Building-------"
@@ -20,6 +28,7 @@ pipeline {
             }
             steps {
                  script {
+                     
                     def app = docker.build('thanakit2/jenkindemo')
                 }
             }
