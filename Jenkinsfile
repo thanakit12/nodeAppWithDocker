@@ -1,18 +1,23 @@
 pipeline {
-    agent {
-        label 'docker' 
-    }
+   
+   agent none
 
     tools{nodejs "npm"}
 
     stages {
 
          stage('InitializeDocker'){
-             steps{
-                script{
-                  def dockerHome = tool 'mydocker'
+              agent {
+                docker {
+                // Set both label and image
+                label 'docker'
+                image 'node:7-alpine'
+                args '--name docker-node' // list any args
                 }
-             }
+            }
+            steps{
+                echo "Initailize"
+            }
          }
 
          stage('Initial') {
@@ -23,14 +28,7 @@ pipeline {
             }
         }
          stage('Docker node test') {
-            agent {
-                docker {
-                // Set both label and image
-                label 'docker'
-                image 'node:7-alpine'
-                args '--name docker-node' // list any args
-                }
-            }
+          
             steps {
                 // Steps run in node:7-alpine docker container on docker slave
                 sh 'node --version'
