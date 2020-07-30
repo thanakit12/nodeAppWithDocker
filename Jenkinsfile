@@ -22,21 +22,20 @@ pipeline {
         }
         stage('Build Image') {
              agent {
-                 docker {
-                    image 'node:10.0.0-alpine' 
-                    args '-p 3000:3000' 
-                }
+                 docker "images"
+                //  docker {
+                //     image 'node:10.0.0-alpine' 
+                //     args '-p 3000:3000' 
+                // }
             }
+
+            //   agent {
+            //     docker "code-style-check-image"
+            //    }
             steps{
                 echo "-------Build-------"
             }
 
-            steps {
-                 script {
-                     
-                    def app = docker.build('thanakit2/jenkindemo')
-                }
-            }
         }
         stage('Deploy') {
             steps {
