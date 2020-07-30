@@ -1,23 +1,29 @@
 pipeline {
     
+    def app
+
     agent any
 
     tools{nodejs "npm"}
+
     stages {
-         stage('Build') {
+         stage('Initial') {
             steps {
-                // nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
-                //     sh 'npm config ls'
-                // }
                 echo "------Building-------"
                 sh 'npm --version'
                 sh 'npm install'
             }
         }
-        stage('Test') {
-
+        stage('Build Image') {
+             agent {
+                 docker {
+                    image 'node:6-alpine' 
+                    args '-p 3000:3000' 
+                }
+            }
             steps {
-                echo 'Testing..'
+                
+                app = docker.build('thanakit2/jenkindemo')
             }
         }
         stage('Deploy') {
