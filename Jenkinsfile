@@ -30,6 +30,10 @@ pipeline {
             steps{
                 echo "-------Build-------"
             }
+
+            steps[
+                sh 'docker imqges'
+            ]
             // steps {
             //      script {
                      
