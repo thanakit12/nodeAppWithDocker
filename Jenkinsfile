@@ -1,4 +1,4 @@
-pipeline {
+node {
     agent any
 
     tools{nodejs "npm"}
@@ -11,7 +11,6 @@ pipeline {
                   def dockerHome = tool 'mydocker'
                 }
              }
-            // env.PATH = "${dockerHome}/bin:${env.PATH}"
          }
 
          stage('Initial') {
@@ -24,7 +23,7 @@ pipeline {
         stage('Build Image') {
              agent {
                  docker {
-                    image 'node:6-alpine' 
+                    image 'node:10.0.0-alpine' 
                     args '-p 3000:3000' 
                 }
             }
