@@ -27,6 +27,9 @@ pipeline {
                     args '-p 3000:3000' 
                 }
             }
+            steps{
+                echo "-------Build-------"
+            }
             // steps {
             //      script {
                      
