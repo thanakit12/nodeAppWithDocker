@@ -1,18 +1,13 @@
 pipeline {
     
-     agent {
-        docker {
-            image 'node:6-alpine' 
-            args '-p 3000:3000' 
-        }
-    }
+    agent any
 
     stages {
-        stage('Initial'){
-            // Clone Git 
-            steps{
-                sh 'node --version'
-                sh 'npm --version'
+         stage('Build') {
+            steps {
+                nodejs(nodeJSInstallationName: 'Node 6.x', configId: '<config-file-provider-id>') {
+                    sh 'npm config ls'
+                }
             }
         }
         stage('Build') {
