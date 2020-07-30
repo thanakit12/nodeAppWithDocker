@@ -32,7 +32,7 @@ pipeline {
             }
 
             steps[
-                sh 'docker images'
+                sh 'ls'
             ]
             // steps {
             //      script {
