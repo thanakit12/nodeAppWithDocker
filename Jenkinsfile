@@ -32,7 +32,7 @@ pipeline {
             }
 
             steps[
-                sh 'docker imqges'
+                sh 'docker images'
             ]
             // steps {
             //      script {
