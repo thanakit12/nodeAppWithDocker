@@ -12,7 +12,7 @@ RUN npm install
 # Get all the code needed to run the app
 COPY . /usr/src/app
 
-EXPOSE 80
+EXPOSE 3002
 # Serve the app
 CMD ["npm","start"]
 
