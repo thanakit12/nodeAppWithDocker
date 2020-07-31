@@ -9,9 +9,7 @@ pipeline {
    } 
 
     stages {
-
         stage('Build Image'){
-
             steps{
                 echo "------Building Image-------"
                 script {
