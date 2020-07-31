@@ -13,22 +13,19 @@ pipeline {
         stage('Build Image'){
             when{
                 branch 'local'
-                environment{
-                    registry = "thanakit2/nodeapp_local"
-                }
-                steps{
-                    echo "-----Start Building Image Local-----------"
-                    script{
-                         docker.build registry + ":$BUILD_NUMBER"
-                    }
-                }
             }
-        }
+            environment{
+                registry = "thanakit2/nodeapp_local"
+            }
+            steps{
+                echo "-----Start Building Image Local-----------"
+            }
+         }
         stage('Finish'){
             steps{
                 echo "------Finish----------"
             }
         }
     }
-   
+  
 }
