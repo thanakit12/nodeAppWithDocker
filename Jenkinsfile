@@ -23,12 +23,14 @@ pipeline {
                     docker.build registry + ":$BUILD_NUMBER"
                 }
             }
-         }
-        stage('Finish'){
-            steps{
-                echo "------Finish----------"
+            post{
+                success{
+                    sh 'docker run -d ' + registry + ":$BUILD_NUMBER"
+                    echo "Start On Localhost://"
+                }
             }
-        }
+         }
+
     }
   
 }
