@@ -10,16 +10,7 @@ pipeline {
 
     stages {
 
-        stage('Clone Git'){
-            steps{
-                git 'https://github.com/thanakit12/nodeAppwithDocker.git'
-            }
-        }
         stage('Build Image'){
-
-            // agent{
-            //    docker { image 'node:alpine' }
-            // }
 
             steps{
                 echo "------Building Image-------"

@@ -1,4 +1,4 @@
-FROM node:alipine
+FROM node
 
 RUN mkdir /usr/src/app
 
