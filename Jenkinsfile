@@ -23,12 +23,27 @@ pipeline {
                     docker.build registry + ":$BUILD_NUMBER"
                 }
             }
-            post{
-                success{
-                    sh 'docker run -d -p 3000:80 ' + registry + ":$BUILD_NUMBER"
-                    echo "Start On Localhost://"
-                }
-            }
+            // post{
+            //     success{
+            //         sh 'docker run -d -p 3000:80 ' + registry + ":$BUILD_NUMBER"
+            //         echo "Start On Localhost://"
+            //     }
+            // }
+         }
+
+         stage('Deploy for local'){
+             when{
+                 branch 'local'
+             }
+             steps{
+                 echo "---------Deploy Image for local---------"
+                 sh 'docker run -d -p 3000:80 ' + registry + ":$BUILD_NUMBER"
+             }
+         }
+         post{
+             success{
+                 echo "SUCCESS"
+             }
          }
 
     }
