@@ -30,7 +30,7 @@ pipeline {
                 branch 'uat'
             }
             environment{
-                registry = "thanakit2/nodeapp_UAT"
+                registry = "thanakit2/nodeapp_uat"
             }
             steps{
                 echo "-----Start Building Image UAT-----------"
