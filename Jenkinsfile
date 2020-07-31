@@ -24,6 +24,21 @@ pipeline {
                 }
             }
          }
+
+         stage('Build Image For UAT'){
+            when{
+                branch 'uat'
+            }
+            environment{
+                registry = "thanakit2/nodeapp_UAT"
+            }
+            steps{
+                echo "-----Start Building Image UAT-----------"
+                script{
+                    docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+         }
         stage('Finish'){
             steps{
                 echo "------Finish----------"
