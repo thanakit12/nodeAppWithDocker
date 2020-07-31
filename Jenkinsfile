@@ -4,6 +4,10 @@ pipeline {
 
    agent any
 
+     environment{
+        registry = "thanakit2/nodeapp_uat"
+     }
+
     stages{
         stage('Initial'){
             steps{
@@ -29,15 +33,23 @@ pipeline {
             when{
                 branch 'uat'
             }
-            environment{
-                registry = "thanakit2/nodeapp_uat"
-            }
+           
             steps{
                 echo "-----Start Building Image UAT-----------"
                 script{
                     docker.build registry + ":$BUILD_NUMBER"
                 }
             }
+         }
+
+         stage('Deploy Image UAT'){
+             when{
+                branch 'uat'
+             }
+             steps{
+                 echo "---------Deploy Image for UAT --------"
+                 sh 'docker run -d -p 3002:3002 ' + registry + ":$BUILD_NUMBER"
+             }
          }
         stage('Finish'){
             steps{
