@@ -4,6 +4,10 @@ pipeline {
 
    agent any
 
+     environment{
+        registry = "thanakit2/nodeapp_local"
+     }
+
     stages{
         stage('Initial'){
             steps{
@@ -13,9 +17,6 @@ pipeline {
         stage('Build Image For local'){
             when{
                 branch 'local'
-            }
-            environment{
-                registry = "thanakit2/nodeapp_local"
             }
             steps{
                 echo "-----Start Building Image Local-----------"
