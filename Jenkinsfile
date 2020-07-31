@@ -4,28 +4,31 @@ pipeline {
 
    agent any
 
-    environment {
-        registry = "thanakit2/nodeappdemo_uat"
-   } 
-
-    stages {
-        stage('Start'){
+    stages{
+        stage('Initial'){
             steps{
-                echo "--------Start-----------"
+                echo "-----Initial----------"
             }
         }
         stage('Build Image'){
-            steps{
-                echo "------Building Image-------"
-                script {
-                    docker.build registry + ":$BUILD_NUMBER"
+            when{
+                branch 'dev'
+                environment{
+                    registry = "thanakit2/nodeapp_UAT"
+                }
+                steps{
+                    echo "-----Start Building Image UAT-----------"
+                    script{
+                         docker.build registry + ":$BUILD_NUMBER"
+                    }
                 }
             }
         }
-        stage('Finish') {
-            steps {
-                echo "Build Image Success"
+        stage('Finish'){
+            steps{
+                echo "------Finish----------"
             }
         }
     }
+   
 }
