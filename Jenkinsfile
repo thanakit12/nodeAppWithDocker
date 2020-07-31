@@ -10,9 +10,10 @@ pipeline {
                 echo "-----Initial----------"
             }
         }
-        stage('Build Image'){
+        stage('Build Image For local'){
             when{
                 branch 'local'
+<<<<<<< HEAD
                 environment{
                     registry = "thanakit2/nodeapp_local"
                 }
@@ -30,6 +31,16 @@ pipeline {
                     script{
                          docker.build registry + ":$BUILD_NUMBER"
                     }
+=======
+            }
+            environment{
+                registry = "thanakit2/nodeapp_local"
+            }
+            steps{
+                echo "-----Start Building Image Local-----------"
+                script{
+                    docker.build registry + ":$BUILD_NUMBER"
+>>>>>>> local
                 }
             }
          }
@@ -38,5 +49,10 @@ pipeline {
                 echo "------Finish----------"
             }
         }
+<<<<<<< HEAD
     }  
+=======
+    }
+  
+>>>>>>> local
 }
