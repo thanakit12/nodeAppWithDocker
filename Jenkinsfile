@@ -25,7 +25,7 @@ pipeline {
             }
             post{
                 success{
-                    sh 'docker run -d ' + registry + ":$BUILD_NUMBER"
+                    sh 'docker run -d -p 3000:80 ' + registry + ":$BUILD_NUMBER"
                     echo "Start On Localhost://"
                 }
             }
