@@ -10,7 +10,7 @@ pipeline {
                 echo "-----Initial----------"
             }
         }
-        stage('Build Image'){
+        stage('Build Image For local'){
             when{
                 branch 'local'
             }
@@ -19,6 +19,9 @@ pipeline {
             }
             steps{
                 echo "-----Start Building Image Local-----------"
+                script{
+                    docker.build registry + ":$BUILD_NUMBER"
+                }
             }
          }
         stage('Finish'){
