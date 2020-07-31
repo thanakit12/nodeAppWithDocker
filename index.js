@@ -10,6 +10,10 @@ app.get('/',(req,res) => {
 app.get('/hello',(req,res) => {
     res.send("Hello World")
 })
+
+app.get('/Local',(req,res) => {
+    res.send("This is A Local")
+})
 .listen(port,() => {
     console.log(`------Server Starting on Port ${port} -----------`)
 })
